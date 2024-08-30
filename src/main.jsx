@@ -8,3 +8,6 @@ createRoot(document.getElementById('root')).render(
     <App />
   </StrictMode>,
 )
+
+// el main es el archivo mas importante de React
+// forma en que react puede renderizar componentes
