@@ -1,0 +1,5 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* de esta forma, va a unir las clases de tailwind a index css */
