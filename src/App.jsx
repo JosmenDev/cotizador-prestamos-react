@@ -1,8 +1,8 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 // se usa antes del return
 import Header from "./components/Header";
 import Button from './components/Button';
-import { formatearDinero } from './helpers';
+import { formatearDinero, calcularTotalPagar } from './helpers';
 
 function App() {
 
@@ -14,6 +14,22 @@ function App() {
   // Dentro de la funcion useState(valorInicial) se coloca el valor inicial
   const [cantidad, setCantidad] = useState(10000);
   const [meses, setMeses] = useState(6);
+  const [total, setTotal] = useState(0);
+  const [pago, setPago] = useState(0);
+
+  // use effect
+  useEffect(() => {
+    const resultadoTotalPagar = calcularTotalPagar(cantidad, meses);
+    setTotal(resultadoTotalPagar);
+  }, [cantidad, meses]);
+  // esto quiere decir que cuando modifique la cantiddad o los meses, va a realizar una accion dentro de la funcion useEffect
+  // cuando tiene un arreglo vacio, se ejecuta solo una vez
+
+  useEffect(() => {
+    setPago(total / meses);
+  }, [total])
+  
+
   const MIN = 0;
   const MAX = 20000;
   const STEP = 100;
@@ -94,6 +110,15 @@ function App() {
         <option value="12">12 Meses</option>
         <option value="24">24 Meses</option>
       </select>
+
+      <div className='my-5 space-y-3 bg-gray-50 p-5'>
+        <h2 className='text-2xl font-extrabold text-gray-500 text-center'>
+          Resumen <span className='text-indigo-600'>de pagos</span>
+        </h2>
+        <p className='text-xl text-gray-500 text-center font-bold'>{meses} Meses</p>
+        <p className='text-xl text-gray-500 text-center font-bold'>{formatearDinero(total)} Total a Pagar</p>
+        <p className='text-xl text-gray-500 text-center font-bold'>{formatearDinero(pago)} Mensuales</p>
+      </div>
     </div>  
   );
 }

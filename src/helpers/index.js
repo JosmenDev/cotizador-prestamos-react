@@ -9,6 +9,12 @@ const formatearDinero = (valor) => {
     return formatter.format(valor);
 }
 
+const calcularTotalPagar = (cantidad, meses) => {
+    const totalPagar = cantidad + (cantidad * 0.05 * meses);
+    return totalPagar;
+}
+
 export {
-    formatearDinero
+    formatearDinero,
+    calcularTotalPagar
 };
