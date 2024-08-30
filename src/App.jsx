@@ -13,7 +13,7 @@ function App() {
   // Segundo se le asigna la funcion que va a modificar el state, la recomendacion es colocar set seguido del nombre del state
   // Dentro de la funcion useState(valorInicial) se coloca el valor inicial
   const [cantidad, setCantidad] = useState(10000);
-
+  const [meses, setMeses] = useState(6);
   const MIN = 0;
   const MAX = 20000;
   const STEP = 100;
@@ -80,6 +80,20 @@ function App() {
         value={cantidad}
       />
       <p className="text-center  my-10 text-5xl font-extrabold text-indigo-600">{formatearDinero(cantidad)}</p>
+
+      <h2 className='text-2xl font-extrabold text-gray-500 text-center'>
+        Elige un <span className='text-indigo-600'>Plazo</span> a Pagar
+      </h2>
+
+      <select
+        className='mt-5 w-full p-2 bg-white border border-gray-300 rounded-lg text-center text-xl font-bold text-gray-500'
+        value={meses}
+        onChange={e => setMeses(+e.target.value)}
+      >
+        <option value="6">6 Meses</option>
+        <option value="12">12 Meses</option>
+        <option value="24">24 Meses</option>
+      </select>
     </div>  
   );
 }
